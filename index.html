@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <button class="configBtn">Clear Grid</button>
+    
+    <div class="sketchArea"></div>
+
+    
+
+    
+    <script>
+    const colCount = 40;
+    const rowCount = 40;
+    const sketchAreaWidth = 960;
+    const boxDiv = document.querySelector('.sketchArea');
+    boxDiv.style.width = `${sketchAreaWidth}px`;
+    
+    
+    createGrid(40,40);
+    createGridInteractions() 
+
+    function createGrid (colCount, rowCount) {
+    for (let col = 1; col <= colCount; col++){
+           
+        newColDiv = document.createElement(`div`);
+        newColDiv.id = `col-${col}`;
+        newColDiv.classList.toggle(`square-col`);
+        boxDiv.appendChild(newColDiv);
+           
+
+        const cellSize = `${cellSizeCalc(colCount)}px`;
+
+        for (let row = 1; row <= colCount; row++) {
+           thisNewDiv = document.createElement(`div`);
+           thisNewDiv.id = `square${col}-${row}`;
+           thisNewDiv.classList.toggle(`anySquare`);
+           thisNewDiv.style.height = cellSize;
+           thisNewDiv.style.width = cellSize;
+           newColDiv.appendChild(thisNewDiv);
+
+        }
+    }
+
+}
+
+
+ function createGridInteractions() {
+    const squareNodes = document.querySelectorAll(".anySquare");
+   for (i=1; i < squareNodes.length; i++) {
+        squareNodes[i].addEventListener('mouseenter', function (e) {
+            e.target.style.background = 'blue';
+        });
+    }
+ }    
+
+    const configButton = document.querySelector(".configBtn");
+    configButton.addEventListener('click', function (e) {
+        getGridVals();
+        
+        });
+
+        function getGridVals() {
+            const squareNodes = document.querySelectorAll(".anySquare");
+                for (i=0; i < squareNodes.length; i++) {
+                    squareNodes[i].remove();
+                }
+                const colNodes = document.querySelectorAll(".square-col");
+                for (i=0; i < colNodes.length; i++) {
+                    colNodes[i].remove();
+                }                
+            gridSize = 101;
+            do {
+                gridSize = prompt('How many cells would you like? (1 - 100)');
+         } while (
+             gridSize > 100 || gridSize < 1
+         ) 
+            createGrid(gridSize,gridSize);
+            createGridInteractions() 
+        }
+
+        function cellSizeCalc(colCount) {
+            return sketchAreaWidth / colCount;
+        }
+            
+    
+    </script>
+</body>
+</html>

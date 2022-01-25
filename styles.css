@@ -1,0 +1,31 @@
+body {
+    margin: auto;
+    max-width: 1280px;
+    justify-content: center;
+}
+
+.button {
+    border-radius: 5px;
+    border-top: steelblue;
+    background: teal;
+}
+
+.sketchArea {
+    margin: auto;
+   
+    display: flex;
+    justify-content: center;
+
+}
+
+.square-row {
+    background: white;
+}
+
+.anySquare {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    background: white;
+}
+
